@@ -2,8 +2,8 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
     name: 'eval',
-    run: async (client, message, args) => {
-        if (message.author.id !== '185957154606284800') return;
+    run: async (message, args, client) => {
+        if (message.author.id !== '778512157926883328') return;
         const embed = new MessageEmbed()
             .setTitle('Evaluating...')
         const msg = await message.channel.send(embed);
