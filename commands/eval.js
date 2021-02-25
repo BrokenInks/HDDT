@@ -1,4 +1,4 @@
-Const Discors = require('discord.js');
+const Discors = require('discord.js');
 module.exports = {
     name: "eval",
     description: "Evaluates a given code",
