@@ -1,35 +1,39 @@
-const Discord = require('discord.js');
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-  name: "eval",
-  aliases: ["e"],
-  description: "Evaluated the code you puy in",
-  usage: "<code to eval>",
-  async execute(message, args, client)  {
+    name: 'eval',
+    run: async (client, message, args) => {
+        if (message.author.id !== '185957154606284800') return;
+        const embed = new MessageEmbed()
+            .setTitle('Evaluating...')
+        const msg = await message.channel.send(embed);
+        try {
+            const data = eval(args.join(' ').replace(/```/g, ''));
+            const embed = new MessageEmbed()
+                .setTitle('Output: ')
+                .setDescription(await data)
+            await msg.edit(embed)
+            await msg.react('✅')
+            await msg.react('❌')
+            const filter = (reaction, user) => (reaction.emoji.name === '❌' || reaction.emoji.name === '✅') && (user.id === message.author.id);
+            msg.awaitReactions(filter, { max: 1 })
+                .then((collected) => {
+                    collected.map((emoji) => {
+                        switch (emoji._emoji.name) {
+                            case '✅':
+                                msg.reactions.removeAll();
+                                break;
+                            case '❌':
+                                msg.delete()
+                                break;
+                        }
+                    })
+                })
+        } catch (e) {
+            const embed = new MessageEmbed()
+                .setTitle('An Error has occured')
+            return await msg.edit(embed);
 
-  if(message.author.id !== '778512157926883328') return;
-  function clean(text) {
-  if (typeof(text) === "string")
-    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-  else
-      return text;
-}try {
-      const code = args.join(" ");
-      let evaled = eval(code);
-      let rawEvaled = evaled;
-      if (typeof evaled !== "string")
-        evaled = require("util").inspect(evaled);
-
-        let embed = new MessageEmbed()
-      .addField(":inbox_tray: Input", `\`\`\`js\n${code}\n\`\`\``)
-      .addField(":outbox_tray: Output", `\`\`\`js\n${clean(evaled).replace(client.token, "Токен не дам)))")}\n\`\`\``)
-      .addField('Type', `\`\`\`xl\n${(typeof rawEvaled).substr(0, 1).toUpperCase() + (typeof rawEvaled).substr(1)}\n\`\`\``)
-      .setColor('GREEN');
-      message.channel.send({embed});
-    } catch (err) {
-      
-      message.channel.send(`\`Внимание, ошибка\`\` \`\`\`js\n${clean(err)}\n\`\`\``);
+        }
     }
-}
 }
