@@ -21,7 +21,7 @@ client.once('ready', () => {
 	console.log('Создатель бота: BrokenInk#1212')
 	setInterval(function(){
 		let stausi = [
-	  'My Owner: BrokenInk#1212'
+	  'My Owner BrokenInk#1212'
 		]
 		let aye_status = stausi[Math.floor(Math.random() * stausi.length)]
 		
