@@ -1,4 +1,5 @@
-const fs = require('fs');
+const { config } = require("dotenv");
+const fs = require("fs");
 const Discord = require('discord.js');
 const { MessageEmbed } = require("discord.js");
 const beautify = require("beautify");
@@ -6,13 +7,13 @@ const { prefix, token } = require('./config.json');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
+client.aliases = new Discord.Collection();
 
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+client.categories = fs.readdirSync("./commands/");
 
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.name, command);
-}
+["command"].forEach(handler => {
+	require(`./handlers/${handler}`)(client);
+});
 
 const cooldowns = new Discord.Collection();
 
@@ -93,4 +94,4 @@ setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 			  }
 			  });
 
-client.login(Nzk1MDExOTcyMzk0NjQ3NTYy.X_DKmA._AA6u5TTQ9Po8PH9Og-U1cdFQQU);
+client.login(token);
