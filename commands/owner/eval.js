@@ -3,6 +3,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "eval",
+  category: 'owner',
   aliases: ["e"],
   description: "Evaluated the code you puy in",
   usage: "<code to eval>",
