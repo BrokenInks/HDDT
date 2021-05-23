@@ -21,7 +21,7 @@ module.exports = {
     },
 
     formatDate: function(date) {
-        return new Intl.DateTimeFormat('en-US').format(date)
+        return new Intl.DateTimeFormat('ru-RU').format(date)
     },
 
     promptMessage: async function (message, author, time, validReactions) {
