@@ -6,8 +6,8 @@ module.exports = {
     category: 'owner',
     execute(message, args, client) {
         if (message.author.id !=="778512157926883328") return message.channel.send("No, this owner command");
-        if (!args[0]) return message.channel.send("You must input category.");
-        if (!args[1]) return message.channel.send("You must input a command name.");
+        if (!args[0]) return message.lineReply("You must input category.");
+        if (!args[1]) return message.lineReply("You must input a command name.");
 
         let category = args[0].toLowerCase();
         let command = args[1].toLowerCase();
@@ -19,8 +19,8 @@ module.exports = {
             const pull = require(`../../commands/${category}/${command}.js`);
             client.commands.set(command, pull);
 
-            return message.channel.send(`Done reload **${command}**`);
+            return message.lineReply(`Done reload **${command}**`);
         }catch (error) {
-            return message.channel.send(`Error reloaind **${command}**: \`${error.message}\``)
+            return message.lineReply(`Error reloaind **${command}**: \`${error.message}\``)
         }
     }}

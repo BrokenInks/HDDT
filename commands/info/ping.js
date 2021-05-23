@@ -15,6 +15,6 @@ module.exports = {
                 .setThumbnail(`https://cdn.discordapp.com/attachments/677202416135045130/685163406059241484/emote.png`)
                 .setTimestamp()
                 .setFooter('для '+message.author.username, message.author.avatarURL)
-                message.channel.send(Embed)
+                message.lineReply(Embed)
     },
 };

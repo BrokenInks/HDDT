@@ -1,4 +1,5 @@
 const { Client } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const Discord = require('discord.js');
 module.exports = {
     name: 'user',
@@ -29,6 +30,6 @@ module.exports = {
                 .setTimestamp()
                 .setFooter('для '+message.author.username, message.author.avatarURL)
 
-            message.channel.send(answer);
+            message.lineReply(answer);
     },
 };

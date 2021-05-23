@@ -9,7 +9,9 @@
     "command": "0.0.5",
     "commands": "0.0.7",
     "cute": "0.0.5",
+    "discord-reply": "^0.1.2",
     "discord.js": "^12.5.1",
+    "discord.js-selfbot": "^12.0.2",
     "dotenv": "^8.2.0",
     "ws": "^7.4.2"
   },

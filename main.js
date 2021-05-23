@@ -1,10 +1,11 @@
 const { config } = require("dotenv");
 const fs = require("fs");
-const Discord = require('discord.js');
+const { Client } = require("discord.js");
 const { MessageEmbed } = require("discord.js");
+const Discord = require('discord.js');
 const beautify = require("beautify");
 const { prefix, token } = require('./config.json');
-
+require('discord-reply'); //⚠️ IMPORTANT: put this before your discord.Client()
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
@@ -18,15 +19,16 @@ client.categories = fs.readdirSync("./commands/");
 const cooldowns = new Discord.Collection();
 
 client.once('ready', () => {
-	console.log('{DZ}HDDDT запустился!');
-	console.log('Создатель бота: BrokenInk#1212')
+	console.log(`${client.user.tag} запустился!`);
+	console.log('Создатель бота: invalid-user#0208')
+	client.channels.cache.get(`835043321818775607`).send('```Я запущен```')
 	setInterval(function(){
 		let stausi = [
-	  'My Owner: BrokenInk#1212'
+	  'My Owner: invalid-user#0208'
 		]
 		let aye_status = stausi[Math.floor(Math.random() * stausi.length)]
 		
-		client.user.setActivity(`${aye_status}`,{ type: 'WATCHING'})
+		client.user.setActivity(`${aye_status}`,{ type: 'WATCHING'}, { status: 'idle'})
 		},60000);
 	  });
 
@@ -40,10 +42,6 @@ client.on('message', message => {
 		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
 	if (!command) return;
-
-	if (command.guildOnly && message.channel.type !== 'text') {
-		return message.reply('Я не могу выполнить эту команду в личных сообщениях!');
-	}
 
 	if (command.args && !args.length) {
 			let reply = `Ты не правильно написал команду, ${message.author}!`;

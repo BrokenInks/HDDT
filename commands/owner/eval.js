@@ -1,5 +1,6 @@
-const Discord = require('discord.js');
+const { Client } = require("discord.js");
 const { MessageEmbed } = require("discord.js");
+const Discord = require('discord.js');
 
 module.exports = {
   name: "eval",
@@ -26,10 +27,10 @@ module.exports = {
       .addField(":outbox_tray: Output", `\`\`\`js\n${clean(evaled).replace(client.token, "Токен не дам)))")}\n\`\`\``)
       .addField('Type', `\`\`\`xl\n${(typeof rawEvaled).substr(0, 1).toUpperCase() + (typeof rawEvaled).substr(1)}\n\`\`\``)
       .setColor('GREEN');
-      message.channel.send({embed});
+      message.lineReply({embed});
     } catch (err) {
       
-      message.channel.send(`\`Внимание, ошибка\`\` \`\`\`js\n${clean(err)}\n\`\`\``);
+      message.lineReply(`\`\`Внимание, ошибка\`\` \`\`\`js\n${clean(err)}\n\`\`\``);
     }
 }
 }
