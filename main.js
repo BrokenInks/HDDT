@@ -5,6 +5,7 @@ const Discord = require('discord.js');
 const { MessageEmbed } = require("discord.js");
 const beautify = require("beautify");
 const { prefix, token } = require('./config.json');
+require('discord-reply'); //⚠️ IMPORTANT: put this before your discord.Client()
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
