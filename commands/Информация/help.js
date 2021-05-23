@@ -45,10 +45,10 @@ module.exports = {
       });
 
       const embed = new MessageEmbed()
-        .setTitle("📬 Need help? Here are all of my commands:")
+        .setTitle("📬 Не знаешь команд? Вот все команды бота:")
         .addFields(categories)
         .setDescription(
-          `Use \`${prefix}help\` followed by a command name to get more additional information on a command. For example: \`${prefix}help ban\`.`
+          `Использование \`${prefix}help\` за которым следует имя команды, чтобы получить дополнительную информацию о команде. Например: \`${prefix}help bot\`.`
         )
         .setFooter(
           `Requested by ${message.author.tag}`,
@@ -66,38 +66,38 @@ module.exports = {
 
       if (!command) {
         const embed = new MessageEmbed()
-          .setTitle(`Invalid command! Use \`${prefix}help\` for all of my commands!`)
+          .setTitle(`Такой команды не существует! Используй \`${prefix}help\` чтобы просмотреть все команды бота!`)
           .setColor("FF0000");
         return message.channel.send(embed);
       }
 
       const embed = new MessageEmbed()
-        .setTitle("Command Details:")
-        .addField("PREFIX:", `\`${prefix}\``)
+        .setTitle("Детали команды:")
+        .addField("Префикс:", `\`${prefix}\``)
         .addField(
-          "COMMAND:",
-          command.name ? `\`${command.name}\`` : "No name for this command."
+          "Команда:",
+          command.name ? `\`${command.name}\`` : "Нет имени для этой команды."
         )
         .addField(
-          "ALIASES:",
+          "Псевдонимы:",
           command.aliases
             ? `\`${command.aliases.join("` `")}\``
-            : "No aliases for this command."
+            : "Для этой команды нет псевдонимов."
         )
         .addField(
-          "USAGE:",
+          "Аргументы:",
           command.usage
             ? `\`${prefix}${command.name} ${command.usage}\``
             : `\`${prefix}${command.name}\``
         )
         .addField(
-          "DESCRIPTION:",
+          "Описание:",
           command.description
             ? command.description
             : "No description for this command."
         )
         .setFooter(
-          `Requested by ${message.author.tag}`,
+          `Команда выполнена ${message.author.tag}`,
           message.author.displayAvatarURL({ dynamic: true })
         )
         .setTimestamp()
