@@ -112,20 +112,20 @@ setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 			  });
 
 //login bot
-client.login(token);
+//client.login(token);
 
-const express = require('express');
-const { response } = require("express");
+//const express = require('express');
+//const { response } = require("express");
 
-const app = express();
+//const app = express();
 
-app.use('./static', express.static('static'));
-app.set('view ingine', 'ejs');
-
-app.get('/', (request, response) =>
-{
-	response.render('./index.ejs');
-});
-app.listen('5000')
-console.log('app started on port 5000')
-
+//app.use('./static', express.static('static'));
+//app.set('view ingine', 'ejs');
+//
+//app.get('/', (request, response) =>
+//{
+//	response.render('./index.ejs');
+//});
+//app.listen('5000')
+//console.log('app started on port 5000')
+//
