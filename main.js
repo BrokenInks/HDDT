@@ -112,7 +112,7 @@ setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 			  });
 
 //login bot
-//client.login(token);
+client.login(token);
 
 //const express = require('express');
 //const { response } = require("express");
